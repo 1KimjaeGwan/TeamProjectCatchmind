@@ -8,12 +8,14 @@ import java.net.Socket;
 import java.util.Date;
 
 import catchmind.vo.MemberVO;
+import catchmind.vo.PaintVO;
 
 public class Client {
 	
-	Socket client;
+	 Socket client;
 	// 로그인 완료된 회원 정보
 	MemberVO member;
+	PaintVO paint;
 
 	public Client(Socket client) {
 		this.client = client;
@@ -36,6 +38,10 @@ public class Client {
 								System.out.println("회원관련 요청");
 								desposeMember((MemberVO)obj);
 							}
+							else if(obj instanceof PaintVO) {
+								System.out.println("그림관련 요청");
+								desposePaint((PaintVO)obj);
+							}
 						}
 					} 
 					}catch (Exception e) {
@@ -44,6 +50,11 @@ public class Client {
 			}
 		});
 	}
+	protected void desposePaint(PaintVO obj) {
+		System.out.println("receive PaintVO" +obj);
+		MainController.sendAllClient(obj);
+	}
+
 	// 회원관련 요청 처리
 	public void desposeMember(MemberVO obj) {
 		System.out.println("receive MemberVO" +obj);
@@ -73,7 +84,6 @@ public class Client {
 		System.out.println("send memberVO : "+obj);
 		sendData(obj);
 	}
-
 	// 연결되어 있는 client에 정보를 출력
 	public synchronized void sendData(Object data) {
 		ObjectOutputStream oos = null;
