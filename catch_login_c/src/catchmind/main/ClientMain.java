@@ -11,8 +11,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 public class ClientMain extends Application {
@@ -68,6 +66,7 @@ public class ClientMain extends Application {
 			System.out.println("show?");
 			e.getMessage();
 		}
+		
 	}
 	//3.정의 showAlert(String text)
 	public void showAlert(String text) {
